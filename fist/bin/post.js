@@ -15,7 +15,8 @@ http.createServer(function (request, response) {
 
     // 发送响应数据 "Hello World"
     //response.end('Hello World\n');
-
+    console.log('request.method:',request.method);
+    console.log('request.url:',request.url);
     if(request.method=="POST"){
         response.writeHead(200, {'Content-Type': 'text/plain'});
 
@@ -40,7 +41,6 @@ http.createServer(function (request, response) {
         }
     }else{
         response.writeHead(200, {'Content-Type': 'text/html'});
-
         response.end("请求不支持");
 
 
