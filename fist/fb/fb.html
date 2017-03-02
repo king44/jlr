@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="fb.css"/>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+
+</head>
+<body>
+<iframe id="iframe" scrolling="no" frameborder="0" width="100%" height="100%"></iframe>
+</iframe>
+<script>
+    setTimeout(function(){
+        document.getElementsByTagName('body')[0].style.height = window.innerHeight+'px';
+    },20);
+
+    handleLogin();
+
+
+    var iframe;
+    function load() {
+        iframe = document.getElementById("iframe");
+        iframe.onload = iframe.onreadystatechange = iframeload;
+        iframe.src = "http://test.evcar.com:8080/WebReport/ReportServer?op=fs&op=h5_page";
+    }
+    function iframeload() {
+        if (!iframe.readyState || iframe.readyState == "complete") {
+
+
+
+
+        }
+    }
+
+
+    function handleLogin() {
+        //  LoadingUtils.showLoading();
+        var self = this;
+
+        $.ajax({
+            url: 'http://test.evcar.com:8080/WebReport/ReportServer',
+            dataType: 'text',
+            data: {
+                op: 'fs_load',
+                cmd: 'login',
+                fr_username: 'admin',
+                fr_password:'admin',
+                fr_remember: true
+            },
+            type: 'POST',
+            success: function (responseObject) {
+                //  LoadingUtils.hideLoading();
+                // 设置 cookie
+                var response=  $.parseJSON(responseObject)
+
+                if (response.devunsupport) {
+                    self.showMessage(self.unauthorizedDevice);
+                } else if(response.fail) {
+                    // 用户名密码错误提示
+                    console.log('ps err')
+                } else if(response.url){
+                    // 跳转目标页
+                    //document.execCommand('Refresh')
+                    window.location.href = 'http://test.evcar.com:8080/WebReport/ReportServer?op=fs'
+                    // load();
+                }
+            },
+            error: function() {
+
+                console.log('other err')
+            }
+        });
+    }
+
+    function checkKey(obj){
+        for(var key in obj){
+            if(key.indexOf('Click')>0){
+                console.log('key---->>',key,typeof(obj[key]))
+            }else{
+                //  console.log('key----22>>',key);
+            }
+            console.log('key---->>',key,obj[key])
+            if(typeof(obj[key])==  'object'){
+                // console.log('key-obj->>',key,obj[key]
+                checkKey(obj[key]);
+            }else{
+                //  console.log('key---->>',key,obj[key])
+
+            }
+        }
+
+
+
+    }
+
+
+
+</script>
+</body>
+</html>
