@@ -125,18 +125,20 @@ weixin.eventMsg(function(msg) {
       var dateStr = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()
      console.log('----',resMsg.content);
       //  var userDate=  JSON.stringify(data.msg);
-      //  mysql_c.insertSql('user',msg.toUserName,msg.fromUserName,dateStr,dateStr,userDate.nickname,userDate.city,userDate.groupid)
+
       weixin.getUser({
         openId: msg.fromUserName
       }, function(data) {
+
         if (data.err) {
           resMsg.content = '获取ERROR：' + data.msg;
         } else {
           resMsg.content = JSON.stringify(data.msg);
           console.log('----',resMsg.content,msg.toUserName,msg.fromUserName);
-        }
+          mysql_c.insertSql('user',msg.toUserName,msg.fromUserName,dateStr,dateStr,resMsg.content.nickname,resMsg.content.city,resMsg.content.groupid)
 
-          var reqBlogs = [];
+        }
+           var reqBlogs = [];
           reqBlogs = blog.getAllBlog();
           for(var i= 0 ;i<reqBlogs.length;i++){
               reqBlogs[i].url = reqBlogs[i].url +'?openid='+data.msg.openid+'&nickname='+data.msg.nickname;
