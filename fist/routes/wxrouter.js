@@ -124,7 +124,7 @@ weixin.eventMsg(function(msg) {
         var d = new Date()
       var dateStr = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()
      // console.log('----',msg.toUserName+':'+msg.fromUserName);
-        mysql_c.insertSql('user',msg.toUserName,msg.fromUserName,dateStr,dateStr)
+        mysql_c.insertSql('user',msg.toUserName,msg.fromUserName,dateStr,dateStr,msg.nickname,msg.city,msg,msg.groupid,)
       weixin.getUser({
         openId: msg.fromUserName
       }, function(data) {
