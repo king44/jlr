@@ -36,9 +36,9 @@ sql_client.query("use " + TEST_DATABASE);
  }
  );*/
 
-sql_client.insertSql = function(args){
+sql_client.insertSql = function(tableName,args){
     var val = "";
-    for (var i= 0 ;i<arguments.length;i++){
+    for (var i= 1 ;i<arguments.length;i++){
         val += "\'";
         val+=arguments[i]
         val +="\'";
@@ -48,7 +48,7 @@ sql_client.insertSql = function(args){
     }
 
     // var val = "\'"+u+"\',\'"+p+"\',\'"+c+"\',\'"+l+"\'";
-    var sql_commond = "INSERT INTO user (user, psw, create_date, last_login_date) VALUES ("+val+")";
+    var sql_commond = "INSERT INTO "+tableName+" (user, psw, create_date, last_login_date) VALUES ("+val+")";
     console.log('-sql_commond--->>',sql_commond)
     sql_client.query(
         //"INSERT INTO 'user' ('user', 'psw', 'create_date', 'last_login_date') VALUES ("+val+")"
