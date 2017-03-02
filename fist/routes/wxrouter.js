@@ -123,7 +123,7 @@ weixin.eventMsg(function(msg) {
     if (msg.eventKey == 'getlocationweather') {
         var d = new Date()
       var dateStr = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()
-     console.log('----',resMsg.content.toJSON());
+     console.log('----',resMsg.content);
       //  var userDate=  JSON.stringify(data.msg);
       //  mysql_c.insertSql('user',msg.toUserName,msg.fromUserName,dateStr,dateStr,userDate.nickname,userDate.city,userDate.groupid)
       weixin.getUser({
