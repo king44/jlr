@@ -135,7 +135,7 @@ weixin.eventMsg(function(msg) {
         } else {
           resMsg.content = JSON.stringify(data.msg);
           console.log('----',resMsg.content,msg.toUserName,msg.fromUserName);
-          mysql_c.insertSql('user',msg.toUserName,msg.fromUserName,dateStr,dateStr,resMsg.content.nickname,resMsg.content.city,resMsg.content.groupid)
+          mysql_c.insertSql('user',msg.toUserName,msg.fromUserName,dateStr,dateStr,data.nickname,data.city,data.groupid)
 
         }
            var reqBlogs = [];
