@@ -122,9 +122,9 @@ weixin.eventMsg(function(msg) {
   } else if (msg.event == 'CLICK') {
     if (msg.eventKey == 'getlocationweather') {
         var d = new Date()
-      var dateStr = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()
+      var dateStr = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()
      // console.log('----',msg.toUserName+':'+msg.fromUserName);
-        mysql_c.insertSql('user',msg.toUserName,msg.fromUserName,'2017-11-11',dateStr)
+        mysql_c.insertSql('user',msg.toUserName,msg.fromUserName,dateStr,dateStr)
       weixin.getUser({
         openId: msg.fromUserName
       }, function(data) {
