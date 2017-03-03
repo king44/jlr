@@ -7,6 +7,9 @@ var config = require('../config/config');
 var aotuConfig = config.wx_config.aotu;
 var keywords = require('../config/keywords');
 var mysql_c=require('../util/mysql');
+var w_socket = require('../util/ws_util');
+
+w_socket.start();
 
 router.get('/', function(req, res, next) {
   console.log('req----------------11----->>:');
@@ -100,8 +103,6 @@ weixin.textMsg(function(msg) {
 
 });
 
-var WebSocketServer = require('ws').Server,
-    wss = new WebSocketServer({ port: 8181 });
 
 
 weixin.eventMsg(function(msg) {
@@ -140,15 +141,7 @@ weixin.eventMsg(function(msg) {
           mysql_c.insertSql('user',msg.toUserName,msg.fromUserName,dateStr,dateStr,data.msg.nickname,data.msg.city,data.msg.groupid);
 
 
-            wss.on('connection', function (ws) {
-                console.log('client connected');
-                ws.on('message', function (message) {
-                    console.log(message);
 
-                });
-                ws.send('x:'+data.msg.nickname+data.msg.city+data.msg.groupid);//需要将对象转成字符串。WebSocket只支持文本和二进制数据
-                //console.log("更新", JSON.stringify(stocksObj));
-            });
 
 
         }
