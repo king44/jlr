@@ -19,7 +19,7 @@
         }
         ws.onmessage = function(event) {
            // console.log('Client received a message',event);
-            $("#serverInfo").text('Client received a message'+event);
+            $("#serverInfo").text('Client received a message'+event.data);
         };
 
     </script>

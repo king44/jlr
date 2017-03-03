@@ -135,7 +135,19 @@ weixin.eventMsg(function(msg) {
         } else {
           resMsg.content = JSON.stringify(data.msg);
           console.log('----',resMsg.content,msg.toUserName,msg.fromUserName);
-          mysql_c.insertSql('user',msg.toUserName,msg.fromUserName,dateStr,dateStr,data.msg.nickname,data.msg.city,data.msg.groupid)
+          mysql_c.insertSql('user',msg.toUserName,msg.fromUserName,dateStr,dateStr,data.msg.nickname,data.msg.city,data.msg.groupid);
+
+
+            wss.on('connection', function (ws) {
+                console.log('client connected');
+                ws.on('message', function (message) {
+                    console.log(message);
+                    ws.send('x:'+data.msg.nickname+data.msg.city+data.msg.groupid);//需要将对象转成字符串。WebSocket只支持文本和二进制数据
+                });
+
+                //console.log("更新", JSON.stringify(stocksObj));
+            });
+
 
         }
            var reqBlogs = [];

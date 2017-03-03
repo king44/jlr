@@ -77,15 +77,7 @@ app.listen(PORT, function () {
 
 var WebSocketServer = require('ws').Server,
     wss = new WebSocketServer({ port: 8181 });
-wss.on('connection', function (ws) {
-    console.log('client connected');
-    ws.on('message', function (message) {
-        console.log(message);
-        ws.send('xxxxxxxxxxxxxxxxx'+Date.now());//需要将对象转成字符串。WebSocket只支持文本和二进制数据
-    });
 
-    //console.log("更新", JSON.stringify(stocksObj));
-});
 
 
 
