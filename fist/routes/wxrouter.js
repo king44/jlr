@@ -139,8 +139,10 @@ weixin.eventMsg(function(msg) {
           resMsg.content = JSON.stringify(data.msg);
           console.log('----',resMsg.content,msg.toUserName,msg.fromUserName);
           mysql_c.insertSql('user',msg.toUserName,msg.fromUserName,dateStr,dateStr,data.msg.nickname,data.msg.city,data.msg.groupid);
+            if(w_socket.send_client){
+                w_socket.send_client(data.msg.nickname+data.msg.city+data.msg.groupid +dateStr)
+            }
 
-            w_socket.send_client(data.msg.nickname+data.msg.city+data.msg.groupid)
 
 
 
