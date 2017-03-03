@@ -75,8 +75,6 @@ app.listen(PORT, function () {
 
 
 
-var WebSocketServer = require('ws').Server,
-    wss = new WebSocketServer({ port: 8181 });
 
 
 

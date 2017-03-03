@@ -100,6 +100,8 @@ weixin.textMsg(function(msg) {
 
 });
 
+var WebSocketServer = require('ws').Server,
+    wss = new WebSocketServer({ port: 8181 });
 
 
 weixin.eventMsg(function(msg) {
