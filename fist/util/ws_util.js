@@ -10,7 +10,13 @@ wss.handel =  function (ws) {
         console.log(message);
 
     });
-    ws.send('x:'+data.msg.nickname+data.msg.city+data.msg.groupid);//需要将对象转成字符串。WebSocket只支持文本和二进制数据
+
+    wss.send_client = function(info){
+        ws.send('x:'+info);//需要将对象转成字符串。WebSocket只支持文本和二进制数据
+    }
+
+
+
     //console.log("更新", JSON.stringify(stocksObj));
 }
 
