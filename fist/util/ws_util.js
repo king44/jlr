@@ -3,6 +3,7 @@
  */
 var WebSocketServer = require('ws').Server,
 wss = new WebSocketServer({ port: 8181 });
+var links = [];
 wss.handel =  function (ws) {
 
     console.log('client connected');
@@ -11,13 +12,20 @@ wss.handel =  function (ws) {
 
     });
 
-    wss.send_client = function(info){
-        ws.send('x:'+info);//需要将对象转成字符串。WebSocket只支持文本和二进制数据
-    }
 
+    links.push(ws)
 
 
     //console.log("更新", JSON.stringify(stocksObj));
+}
+
+
+wss.send_client = function(info){
+
+    for(ws in links){
+        ws.send('x:'+info);//需要将对象转成字符串。WebSocket只支持文本和二进制数据
+    }
+
 }
 
 wss.start = function () {
