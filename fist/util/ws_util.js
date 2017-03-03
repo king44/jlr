@@ -22,7 +22,8 @@ wss.handel =  function (ws) {
 
 wss.send_client = function(info){
 
-    for(ws in links){
+    for(var i=0;i<links.length;i++){
+        var ws = links[i];
         ws.send('x:'+info);//需要将对象转成字符串。WebSocket只支持文本和二进制数据
     }
 
