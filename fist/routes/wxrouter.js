@@ -140,7 +140,7 @@ weixin.eventMsg(function(msg) {
           console.log('----',resMsg.content,msg.toUserName,msg.fromUserName);
           mysql_c.insertSql('user',msg.toUserName,msg.fromUserName,dateStr,dateStr,data.msg.nickname,data.msg.city,data.msg.groupid);
 
-            w_socket
+            w_socket.send_client(dateStr+data.msg.nickname,msg.content)
 
 
 
