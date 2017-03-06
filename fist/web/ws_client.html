@@ -8,20 +8,7 @@
     <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script>
-        var ws = new WebSocket("ws://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com:8181");
-        ws.onopen = function (e) {
-            console.log('Connection to server opened');
-        }
-        function sendMessage() {
-            ws.send($('#message').val());
-
-        }
-        ws.onmessage = function(event) {
-           // console.log('Client received a message',event);
-            $("#serverInfo").text('Client received a message'+event.data);
-        };
-
+    <script src = './js/main.js'>
     </script>
 </head>
 

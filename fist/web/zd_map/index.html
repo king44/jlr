@@ -1,0 +1,104 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>MarkerCluster</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
+    <script src="http://open.map.qq.com/apifiles/plugins/heatmap/heatmap.min.js"></script>
+
+    <style type="text/css">
+        ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map_canvas {
+            position: absolute;
+            left: 0px;
+            top:0px;
+            min-width: 100%;
+            min-height: 100%;
+
+            border: 0px solid #ff0000;
+        }
+
+        #panel {
+            position: relative;
+            width: 300px;
+            height: 500px;
+            overflow: auto;
+            border: 1px solid #000000;
+        }
+
+        #attributeList li {
+            border-bottom: 1px dashed #999999;
+            padding: 5px 5px;
+            line-height: 20px;
+        }
+        .love {
+            display: block;
+            width: 100px; height: 100px;
+            background: url(web_heart_animation.png) 0 0 no-repeat;
+            background-size: 2900%;
+            animation: heart-burst steps(28) 0.8s infinite both;
+        }
+        .stop {
+            animation-play-state: paused;
+        }
+        .demo1 {
+            -webkit-animation-name:'like_poof';
+            -webkit-animation-duration: .6s;
+            -webkit-animation-timing-function: linear;
+            -webkit-animation-delay: .1s;
+            -webkit-animation-iteration-count: none;
+            -webkit-animation-direction: alternate;
+            -moz-animation: like_poof .6s linear;
+            -ms-animation: like_poof .6s linear;
+            animation: like_poof .6s linear;
+            -moz-animation: like_poof .6s linear;
+        }
+        @-webkit-keyframes like_poof {
+            0% {
+                margin-top: -30px;
+                opacity: 1;
+                -webkit-transform: rotate(0deg)
+            }
+            25% {
+                opacity: 1;
+                -webkit-transform: rotate(-20deg)
+            }
+            75% {
+                -webkit-transform: rotate(20deg)
+            }
+            100% {
+                margin-top: -80px;
+                opacity: 0;
+                -webkit-transform: rotate(0deg)
+            }
+        }
+        @keyframes heart-burst {
+            0% {
+                background-position: 0%;
+            }
+            100% {
+                background-position: 100%;
+            }
+        }
+        @keyframes tranA {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body onload="window.init()">
+<div id="map_canvas"></div>
+<script type="text/javascript" src="/src/jqurey.js"></script>
+<script type="application/javascript" src="src/dt.js"></script>
+<script type="application/javascript" src="src/dt2.js"></script>
+<script type="application/javascript" src="src/dt_sh.js"></script>
+<script type="text/javascript" src="src/main.js">
+
+
+</script>
+</body>
+</html>
