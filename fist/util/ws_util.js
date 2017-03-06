@@ -3,6 +3,7 @@
  */
 var WebSocketServer = require('ws').Server,
 wss = new WebSocketServer({ port: 8181 });
+var WebSocket = WebSocketServer = require('ws');
 var links = [];
 wss.handel =  function (ws) {
 
