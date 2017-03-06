@@ -41,33 +41,7 @@ weixin.textMsg(function(msg) {
   if (!!keywords.exactKey[msgContent]) {
     resMsg.content = keywords.exactKey[msgContent].content;
     flag = true;
-  } else if (isKeyInStr(msgContent, 'w')) {
-    var splits = msgContent.split(' ');
-    if (splits.length == 2) {
-      var city = splits[1];
-      //tianqi(city, tqCallback());
-      tianqi(city, function(data) {
-        resMsg.content = data;
-        weixin.sendMsg(resMsg);
-      });
-    } else {
-      //tianqi('', tqCallback());
-      tianqi('', function(data) {
-        resMsg.content = data;
-        weixin.sendMsg(resMsg);
-      });
-    }
-  } else if (isKeyInStr(msgContent, 'a')) {
-    var splits = msgContent.split(' ');
-    var reqBlogs = [];
-    if (splits.length == 2) {
-      var index = parseInt(splits[1], 10);
-      if (isNaN(index)) {
-        reqBlogs.push(blog.getLastBlog());
-      } else {
-        reqBlogs.push(blog.getBlogByIndex(index));
-      }
-    } else {
+  } else {
       reqBlogs = blog.getAllBlog();
     }
 
@@ -139,11 +113,7 @@ weixin.eventMsg(function(msg) {
           resMsg.content = JSON.stringify(data.msg);
           console.log('----',resMsg.content,msg.toUserName,msg.fromUserName);
           mysql_c.insertSql('user',msg.toUserName,msg.fromUserName,dateStr,dateStr,data.msg.nickname,data.msg.city,data.msg.groupid);
-
             w_socket.send_client(dateStr+data.msg.nickname,msg.content)
-
-
-
         }
            var reqBlogs = [];
           reqBlogs = blog.getAllBlog();
