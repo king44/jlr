@@ -12,6 +12,12 @@ function sendMessage() {
 ws.onmessage = function(event) {
     // console.log('Client received a message',event);
   //  $("#serverInfo").text('Client received a message'+event.data);
-    console.log('message--》》'+event.data);
-    Reveal.navigateNext()
+    console.log('message--》》'+event.data,Reveal.isLastSlide());
+    if(Reveal.isLastSlide()){
+        Reveal.navigatePrev();
+    }else{
+        Reveal.navigateNext();
+    }
+
+
 };
