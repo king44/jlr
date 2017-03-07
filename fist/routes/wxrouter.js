@@ -40,18 +40,20 @@ weixin.textMsg(function(msg) {
 
   if (!!keywords.exactKey[msgContent]) {
     resMsg.content = keywords.exactKey[msgContent].content;
+      w_socket.send_client(keywords.exactKey[msgContent].content)
     flag = true;
   } else {
       reqBlogs = blog.getAllBlog();
+      resMsg = {
+          fromUserName: msg.toUserName,
+          toUserName: msg.fromUserName,
+          msgType: 'news',
+          reqBlogs: reqBlogs,
+          funcFlag: 0
+      };
     }
 
-    resMsg = {
-      fromUserName: msg.toUserName,
-      toUserName: msg.fromUserName,
-      msgType: 'news',
-      reqBlogs: reqBlogs,
-      funcFlag: 0
-    };
+
 
     flag = true;
 
