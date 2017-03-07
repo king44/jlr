@@ -54,9 +54,7 @@ weixin.textMsg(function(msg) {
     };
 
     flag = true;
-  } else {
-    flag = true;
-  }
+
   // 去掉前后空格并且转换成大写
   function trim(str) {
     return ("" + str).replace(/^\s+/gi, '').replace(/\s+$/gi, '').toUpperCase();
