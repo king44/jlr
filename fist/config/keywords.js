@@ -15,7 +15,7 @@ var exactKey = {
     key: 'help',
     content: '测试'
   },
-  'com_1':{
+  'CMD_1':{
       key: '1',
       content: 'command_1'
 
