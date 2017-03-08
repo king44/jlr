@@ -19,7 +19,16 @@ var exactKey = {
       key: 'cmd_1',
       content: 'command_1'
 
-  }
+  },'CMD_2':{
+        key: 'cmd_2',
+        content: 'command_2'
+
+    },'CMD_3':{
+        key: 'cmd_3',
+        content: 'command_3'
+
+    },
+
 };
 
 module.exports = {

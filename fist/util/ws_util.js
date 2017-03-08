@@ -29,7 +29,7 @@ wss.send_client = function(info){
        // console.log('ws.readyState--------->>>>>>',info)
       //  console.log('ws.readyState--------->>>>>>',WebSocket)
         if (ws.readyState === WebSocket.OPEN) {
-            ws.send('x:' + info);//需要将对象转成字符串。WebSocket只支持文本和二进制数据
+            ws.send(info);//需要将对象转成字符串。WebSocket只支持文本和二进制数据
         }else{
             links.splice(i,1);
         }
