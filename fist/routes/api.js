@@ -1,13 +1,16 @@
 var router = require('express').Router();
 var request = require('request');
-
+var fs = require('fs');
 
 var config = require('../config/config');
 var aotuConfig = config.wx_config.aotu;
 
 var util = require('../util/util');
-var fs = require("fs");
 
+var jssdk = require('../api/jssdk');
+
+var multiparty = require('connect-multiparty')
+var multipartMiddleware = multiparty();
 
 router.get('/', function(req, res, next) {
   res.status(200).send('api page');
@@ -227,9 +230,10 @@ router.get('/getuserlist',function(req,res,next){
 
 
 
-router.post('/upload_img',function(req,res,next){
+router.post('/upload_img',multipartMiddleware,function(req,res){
 
 
+    console.log(req.body,req.files,req.files.file.path);
 
     var postdata='';
     req.addListener("data",function(postchunk){
@@ -241,21 +245,17 @@ router.post('/upload_img',function(req,res,next){
         //接收前台POST过来的base64
         var imgData = req.body.imgData;
         //过滤data:URL
-        for(var key in req.body){
-          console.log('------0--->>',key,req.body[key])
-        }
-        var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
-
+        var base64Data = postdata.replace(/^data:image\/\w+;base64,/, "");
+        console.log('--------1----->>');
          var dataBuffer = new Buffer(postdata, 'base64');
-        console.log('--------2----->>',postdata.length,dataBuffer.length);
-        fs.writeFile("image.png", postdata, function(err) {
+        console.log('--------2----->>',dataBuffer.length);
+        fs.writeFile("image.png", dataBuffer, function(err) {
 
             if(err){
                 res.send(err);
             }else{
                 console.log('--------3----->>','保存成功');
-                console.log("..................",req.body, req.files);
-               // res.send("保存成功！");
+                res.send("保存成功！");
             }
         });
         res.end('success ');
