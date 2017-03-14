@@ -233,7 +233,7 @@ router.get('/getuserlist',function(req,res,next){
 router.post('/upload_img',multipartMiddleware,function(req,res){
 
     var path = req.files.file1.path;
-    console.log('------zz-------',req.body,req.files,path);
+    console.log('------00-------',req.files,path);
 
     var source = fs.createReadStream(path);
     var dest = fs.createWriteStream(function(path, options) {
@@ -241,10 +241,11 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
         return new WriteStream(path, options);
 
     });
-
+    console.log('------11-------',req.files,path);
     source.pipe(dest);
-    source.on('end', function() { fs.unlinkSync('imagess.png');});   //delete
+    source.on('end', function() { fs.unlinkSync('./imagess.png');});   //delete
     source.on('error', function(err) {  })
+    console.log('------22-------',req.files,path);
 
 
 
