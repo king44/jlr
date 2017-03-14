@@ -233,7 +233,7 @@ router.get('/getuserlist',function(req,res,next){
 router.post('/upload_img',multipartMiddleware,function(req,res){
 
 
-    console.log(req.body,req.files,req.files.file.path);
+    console.log('------zz-------',req.body,req.files);
 
     var postdata='';
     req.addListener("data",function(postchunk){
@@ -243,6 +243,10 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
     req.addListener("end",function(){
        // console.log('req,res,next--------------',req,res,next)
         //接收前台POST过来的base64
+        console.log(req.body,req.files);
+        for(var key in req.body){
+            console.log('------00-------',key,req[key]);
+        }
         var imgData = req.body.imgData;
         //过滤data:URL
         var base64Data = postdata.replace(/^data:image\/\w+;base64,/, "");
