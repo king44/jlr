@@ -245,7 +245,7 @@ router.post('/upload_img',function(req,res,next){
         console.log('--------1----->>');
          var dataBuffer = new Buffer(postdata, 'base64');
         console.log('--------2----->>',postdata.length,dataBuffer.length);
-        fs.writeFile("image.png", dataBuffer, function(err) {
+        fs.writeFile("image.png", postdata, function(err) {
 
             if(err){
                 res.send(err);
