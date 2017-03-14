@@ -236,15 +236,11 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
     console.log('------00-------',req.files,path);
 
     var source = fs.createReadStream(path);
-    var dest = fs.createWriteStream(function(path, options) {
-
-        return new WriteStream(path, options);
-
-    });
+    var dest = fs.createWriteStream('img.png');
     console.log('------11-------',req.files,path);
     source.pipe(dest);
-    source.on('end', function() { fs.unlinkSync('./imagess.png');});   //delete
-    source.on('error', function(err) {  })
+    //source.on('end', function() { fs.unlinkSync('./imagess.png');});   //delete
+    source.on('error', function(err) {console.log(err)  })
     console.log('------22-------',req.files,path);
 
 
