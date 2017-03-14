@@ -237,7 +237,7 @@ router.post('/upload_img',function(req,res,next){
     //获取到了POST数据
     req.addListener("end",function(){
         console.log('req,res,next--------------',req,res,next)
-        response.end('success ');
+        res.end('success ');
     });
 });
 //获取用户信息
