@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var request = require('request');
-
+var fs = require('fs');
+var Buffer = require('../node_modules/buffer')
 var config = require('../config/config');
 var aotuConfig = config.wx_config.aotu;
 
@@ -236,7 +237,19 @@ router.post('/upload_img',function(req,res,next){
     });
     //获取到了POST数据
     req.addListener("end",function(){
-        console.log('req,res,next--------------',req,res,next)
+       // console.log('req,res,next--------------',req,res,next)
+        //接收前台POST过来的base64
+        var imgData = req.body.imgData;
+        //过滤data:URL
+        var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
+        var dataBuffer = new Buffer(base64Data, 'base64');
+        fs.writeFile("image.png", dataBuffer, function(err) {
+            if(err){
+                res.send(err);
+            }else{
+                res.send("保存成功！");
+            }
+        });
         res.end('success ');
     });
 });
