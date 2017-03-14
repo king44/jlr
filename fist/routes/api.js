@@ -222,6 +222,13 @@ router.get('/getuserlist',function(req,res,next){
     });
   });
 });
+
+
+
+
+router.post('/upload_img',function(req,res,next){
+ console.log('req,res,next--------------',req,res,next)
+});
 //获取用户信息
 var getUserInfoByOpenid = function(access_token,openid){
   return new Promise(function(resolve,reject){

@@ -8,6 +8,9 @@ var qs=require('qs');
 
 var TOKEN='jinliren';           //必须与测试号所填写的Token相同
 
+var express = require('express');
+var fs = require("fs");
+
 function checkSignature(params,token){
   var key=[token,params.timestamp,params.nonce].sort().join('');
   //将token （自己设置的） 、timestamp（时间戳）、nonce（随机数）三个参数进行字典排序
