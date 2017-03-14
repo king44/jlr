@@ -6,7 +6,7 @@ var config = require('../config/config');
 var aotuConfig = config.wx_config.aotu;
 
 var util = require('../util/util');
-
+var fs = require("fs");
 
 
 router.get('/', function(req, res, next) {
