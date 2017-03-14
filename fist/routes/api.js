@@ -1,6 +1,6 @@
 var router = require('express').Router();
 var request = require('request');
-var fs = require('fs');
+
 
 var config = require('../config/config');
 var aotuConfig = config.wx_config.aotu;
@@ -8,6 +8,17 @@ var aotuConfig = config.wx_config.aotu;
 var util = require('../util/util');
 
 var jssdk = require('../api/jssdk');
+var express = require('express');
+var fs = require("fs");
+
+
+app.use(express.bodyParser());
+app.use(express.methodOverride());
+app.use(express.cookieParser('keyboard cat'));
+app.use(express.session());
+app.use(app.router);
+app.use(express.static(__dirname + '/up')); //静态文件目录
+app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 
 router.get('/', function(req, res, next) {
   res.status(200).send('api page');
