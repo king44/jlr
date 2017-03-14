@@ -227,7 +227,18 @@ router.get('/getuserlist',function(req,res,next){
 
 
 router.post('/upload_img',function(req,res,next){
- console.log('req,res,next--------------',req,res,next)
+
+
+
+    var postdata='';
+    req.addListener("data",function(postchunk){
+        postdata+=postchunk;
+    });
+    //获取到了POST数据
+    req.addListener("end",function(){
+        console.log('req,res,next--------------',req,res,next)
+        response.end('success ');
+    });
 });
 //获取用户信息
 var getUserInfoByOpenid = function(access_token,openid){
