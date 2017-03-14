@@ -10,7 +10,12 @@ var api = require('./routes/api');
 var cloud = require('./cloud');
 var mysql_c=require('./util/mysql');
 var app = express();
-var jssdk = require('../api/jssdk');
+
+
+
+
+
+
 var express = require('express');
 var fs = require("fs");
 
