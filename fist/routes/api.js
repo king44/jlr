@@ -232,8 +232,23 @@ router.get('/getuserlist',function(req,res,next){
 
 router.post('/upload_img',multipartMiddleware,function(req,res){
 
+    var path = req.files.file1.path;
+    console.log('------zz-------',req.body,req.files,path);
 
-    console.log('------zz-------',req.body,req.files);
+    var source = fs.createReadStream(path);
+    var dest = fs.createWriteStream(function(path, options) {
+
+        return new WriteStream(path, options);
+
+    });
+
+    source.pipe(dest);
+    source.on('end', function() { fs.unlinkSync('imagess.png');});   //delete
+    source.on('error', function(err) {  })
+
+
+
+
 
     var postdata='';
     req.addListener("data",function(postchunk){
