@@ -75,7 +75,7 @@ app.listen(PORT, function () {
 
 
 ///////////////////////////////////////////////////////////////////
-var connect = require('connect')
+/*var connect = require('connect')
 var http = require('http')
 var app = connect()
 var multipart = require('connect-multiparty');
@@ -87,7 +87,7 @@ app.use(multipart())
 app.post('/upload', function(req, resp) {
     console.log("..................",req.body, req.files);
 // don't forget to delete all req.files when done
-});
+});*/
 
 
 
