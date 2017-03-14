@@ -49,7 +49,7 @@ sql_client.insertSql = function(tableName,args){
 
     // var val = "\'"+u+"\',\'"+p+"\',\'"+c+"\',\'"+l+"\'";
     var sql_commond = "INSERT INTO "+tableName+" VALUES ("+val+")";
-    console.log('-sql_commond--->>',sql_commond)
+  //  console.log('-sql_commond--->>',sql_commond)
     sql_client.query(
         //"INSERT INTO 'user' ('user', 'psw', 'create_date', 'last_login_date') VALUES ("+val+")"
         // "INSERT INTO 'user' values('user','ww3','2017-11-11','2017-11-12');"

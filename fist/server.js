@@ -74,8 +74,20 @@ app.listen(PORT, function () {
 });
 
 
-
-
+///////////////////////////////////////////////////////////////////
+var connect = require('connect')
+var http = require('http')
+var app = connect()
+var multipart = require('connect-multiparty');
+// parse urlencoded request bodies into req.body
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded())
+app.use(multipart())
+// respond to all requests
+app.post('/upload', function(req, resp) {
+    console.log("..................",req.body, req.files);
+// don't forget to delete all req.files when done
+});
 
 
 

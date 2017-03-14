@@ -13,11 +13,13 @@ ws.onmessage = function(event) {
     // console.log('Client received a message',event);
   //  $("#serverInfo").text('Client received a message'+event.data);
     console.log('message--》》'+event.data,Reveal.isLastSlide());
-    if(Reveal.isLastSlide()){
-        Reveal.navigatePrev();
+    Reveal.navigateNext();
+    /*if(Reveal.isLastSlide()){
+        Reveal.navigateTo(0,0);
+
     }else{
         Reveal.navigateNext();
-    }
+    }*/
 
 
 };

@@ -12,7 +12,7 @@ wss.handel =  function (ws) {
         console.log(message);
 
     });
-    ws.onclose =
+   // ws.onclose =
 
     links.push(ws)
 
@@ -25,9 +25,7 @@ wss.send_client = function(info){
 
     for(var i=0;i<links.length;i++){
         var ws = links[i];
-        //console.log('ws.readyState--------->>>>>>',ws.readyState)
-       // console.log('ws.readyState--------->>>>>>',info)
-      //  console.log('ws.readyState--------->>>>>>',WebSocket)
+
         if (ws.readyState === WebSocket.OPEN) {
             ws.send(info);//需要将对象转成字符串。WebSocket只支持文本和二进制数据
         }else{
