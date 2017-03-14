@@ -251,6 +251,7 @@ router.post('/upload_img',function(req,res,next){
                 res.send(err);
             }else{
                 console.log('--------3----->>','保存成功');
+                console.log("..................",req.body, req.files);
                // res.send("保存成功！");
             }
         });
