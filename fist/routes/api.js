@@ -241,8 +241,8 @@ router.post('/upload_img',function(req,res,next){
         //接收前台POST过来的base64
         var imgData = req.body.imgData;
         //过滤data:URL
-        var base64Data = postdata.replace(/^data:image\/\w+;base64,/, "");
-        console.log('--------1----->>');
+        var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
+        console.log('--------1----->>',imgData,imgData.length);
          var dataBuffer = new Buffer(postdata, 'base64');
         console.log('--------2----->>',postdata.length,dataBuffer.length);
         fs.writeFile("image.png", postdata, function(err) {
