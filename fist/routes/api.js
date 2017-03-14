@@ -242,8 +242,11 @@ router.post('/upload_img',function(req,res,next){
         var imgData = req.body.imgData;
         //过滤data:URL
         var base64Data = postdata.replace(/^data:image\/\w+;base64,/, "");
+        console.log('--------1----->>');
          var dataBuffer = new Buffer(base64Data, 'base64');
+        console.log('--------2----->>');
         fs.writeFile("image.png", dataBuffer, function(err) {
+            console.log('--------3----->>',err);
             if(err){
                 res.send(err);
             }else{
