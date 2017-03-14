@@ -10,7 +10,18 @@ var api = require('./routes/api');
 var cloud = require('./cloud');
 var mysql_c=require('./util/mysql');
 var app = express();
+var jssdk = require('../api/jssdk');
+var express = require('express');
+var fs = require("fs");
 
+
+app.use(express.bodyParser());
+app.use(express.methodOverride());
+app.use(express.cookieParser('keyboard cat'));
+app.use(express.session());
+app.use(app.router);
+app.use(express.static(__dirname + '/up')); //静态文件目录
+app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 // 设置 view 引擎
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
