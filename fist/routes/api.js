@@ -227,8 +227,23 @@ router.get('/getuserlist',function(req,res,next){
   });
 });
 
+router.get('/get_img',function(req,res){
+
+        fs.readFile('upload_img/img.png','binary',function(err, file) {
+            if (err) {
+                console.log(err);
+                return;
+            }else{
+                res.writeHead(200, {'Content-Type': 'image/jpeg'});
+                res.write(file,'binary');
+                res.end();
+            }
+        });
 
 
+    }
+
+)
 
 router.post('/upload_img',multipartMiddleware,function(req,res){
 
@@ -236,7 +251,7 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
     console.log('------00-------',req.files,path);
 
     var source = fs.createReadStream(path);
-    var dest = fs.createWriteStream('img.png');
+    var dest = fs.createWriteStream('upload_img/img.png');
     console.log('------11-------',req.files,path);
     source.pipe(dest);
     //source.on('end', function() { fs.unlinkSync('./imagess.png');});   //delete
