@@ -11,7 +11,7 @@ var jssdk = require('../api/jssdk');
 
 var multiparty = require('connect-multiparty')
 var multipartMiddleware = multiparty();
-
+var weixin = require('../api/weixin');
 router.get('/', function(req, res, next) {
   res.status(200).send('api page');
 });
