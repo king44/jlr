@@ -25,6 +25,10 @@ router.post('/', function(req, res) {
   weixin.loop(req, res);
 });
 
+router.bindSend = function (resMsg) {
+    weixin.sendMsg(resMsg);
+}
+
 weixin.token = aotuConfig.token;
 
 weixin.textMsg(function(msg) {

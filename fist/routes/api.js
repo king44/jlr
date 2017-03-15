@@ -11,7 +11,15 @@ var jssdk = require('../api/jssdk');
 
 var multiparty = require('connect-multiparty')
 var multipartMiddleware = multiparty();
-var weixin = require('../api/weixin');
+var wxrouter = null;
+
+//var wx = null;
+router.bind = function(weixin) {
+    wxrouter = weixin;
+}
+
+
+
 router.get('/', function(req, res, next) {
   res.status(200).send('api page');
 });
@@ -266,7 +274,9 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
         content: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img',
         funcFlag: 0
     };
-    weixin.sendPicMsg(resMsg);
+    wxrouter.bindSend(resMsg);
+    ///router.mergeParams
+   // weixin.sendPicMsg(resMsg);
 /*
     var postdata='';
     req.addListener("data",function(postchunk){
