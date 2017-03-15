@@ -272,12 +272,13 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
         fromUserName: from,
         toUserName: to,
         msgType: 'text',
-        content: 'test',
+        content: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img',
         funcFlag: 0
     };
     //
     console.log('send_wx_start---->>')
     wxrouter.bindSend(resMsg);
+    res.end('success ');
     ///router.mergeParams
    // weixin.sendPicMsg(resMsg);
 /*
