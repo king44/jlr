@@ -47,7 +47,7 @@ weixin.textMsg(function(msg) {
     w_socket.send_client(keywords.exactKey[msgContent].content+'|'+msg.toUserName+'|'+msg.fromUserName);
     //http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img
 
-    flag = false;
+    flag = true;
   } else {
       reqBlogs = blog.getAllBlog();
       resMsg = {
@@ -141,7 +141,7 @@ weixin.eventMsg(function(msg) {
 
 
        // weixin.sendMsg(resMsg);
-      flag = true;
+      flag = false;
     } else if (msg.eventKey == 'scancode_push') {
 
     }
