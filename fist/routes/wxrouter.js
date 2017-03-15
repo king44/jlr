@@ -53,11 +53,12 @@ weixin.textMsg(function(msg) {
           reqBlogs: reqBlogs,
           funcFlag: 0
       };
+      flag = true;
     }
 
 
 
-    flag = true;
+
 
   // 去掉前后空格并且转换成大写
   function trim(str) {
