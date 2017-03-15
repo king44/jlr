@@ -271,9 +271,9 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
     var resMsg = {
         fromUserName: from,
         toUserName: to,
-        msgType: 'text',
-        content: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img',
-        funcFlag: 0
+        msgType: 'image',
+        url: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img',
+        mediaId: 0
     };
     //
     console.log('send_wx_start---->>')

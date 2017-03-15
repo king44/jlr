@@ -187,9 +187,9 @@ WeiXin.prototype.sendPicMsg = function(msg) {
       "<FromUserName><![CDATA[" + msg.fromUserName + "]]></FromUserName>" +
       "<CreateTime>" + time + "</CreateTime>" +
       "<MsgType><![CDATA[" + msg.msgType + "]]></MsgType>" +
-      "<Image>" +
+      "<PicUrl><![CDATA[" + msg.url + "]]></PicUrl>" +
       "<MediaId><![CDATA[" + msg.mediaId + "]]></MediaId>" +
-      "</Image>" +
+
       "</xml>";
     this.res.type('xml');
     this.res.send(output);
