@@ -247,7 +247,7 @@ router.get('/get_img',function(req,res){
 
 router.post('/upload_img',multipartMiddleware,function(req,res){
 
-    var t_f = req.files.file1.path.split('|');
+    var t_f = req.files.file.path.split('|');
 
 
     var to = t_f[0];
