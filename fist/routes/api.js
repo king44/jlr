@@ -247,10 +247,12 @@ router.get('/get_img',function(req,res){
 
 router.post('/upload_img',multipartMiddleware,function(req,res){
 
-    var path = req.files.file1.path;
-    var to = req.getHeader('toUserName')
-    var from = req.getHeader('fromUserName')
-    console.log('------00-------',to,from);
+    var t_f = req.files.file1.path.split('|');
+
+
+    var to = t_f[0];
+    var from = t_f[1];
+    console.log('------00-------',t_f,to,from);
 
     var source = fs.createReadStream(path);
     var dest = fs.createWriteStream('upload_img/img.png');
