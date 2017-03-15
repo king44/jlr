@@ -146,7 +146,7 @@ WeiXin.prototype.sendTextMsg = function(msg) {
     "</xml>";
   this.res.type('xml');
   this.res.send(output);
-  console.log('send_wx_end---->>')
+  console.log('send_wx_end---->>',output)
   return this;
 }
 
@@ -279,6 +279,7 @@ WeiXin.prototype.loop = function(req, res) {
   req.on('end', function() {
     xml2js.parseString(buf, function(err, json) {
       if (err) {
+        console.log("parseString-->>",err)
         err.status = 400;
       } else {
         req.body = json;
