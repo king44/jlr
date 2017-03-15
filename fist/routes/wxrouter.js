@@ -43,7 +43,7 @@ weixin.textMsg(function(msg) {
     w_socket.send_client(keywords.exactKey[msgContent].content+'|'+msg.toUserName+'|'+msg.fromUserName);
     //http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img
 
-    flag = true;
+    flag = false;
   } else {
       reqBlogs = blog.getAllBlog();
       resMsg = {
