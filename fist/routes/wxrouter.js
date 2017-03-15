@@ -141,7 +141,7 @@ weixin.eventMsg(function(msg) {
 
 
        // weixin.sendMsg(resMsg);
-      flag = false;
+      flag = true;
     } else if (msg.eventKey == 'scancode_push') {
 
     }
