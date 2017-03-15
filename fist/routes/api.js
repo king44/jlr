@@ -260,8 +260,8 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
     console.log('------22-------',req.files,path);
 
     var resMsg = {
-        fromUserName: to,
-        toUserName: from,
+        fromUserName: from,
+        toUserName: to,
         msgType: 'text',
         content: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img',
         funcFlag: 0
