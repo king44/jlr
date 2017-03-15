@@ -32,8 +32,8 @@
 module.exports = [{
     title: 'king',
     description:'aaaaaa',
-    picUrl: 'http://www.fanruan.com/images/index1.jpg',
-    url: 'http://test.evcar.com:8080/WebReport/fb/fb.html',
-    date: '2016-06-22',
+    picUrl: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img',
+    url: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img',
+    date: '2017-06-22',
     index: 0
 }];

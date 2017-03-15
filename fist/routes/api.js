@@ -12,7 +12,7 @@ var jssdk = require('../api/jssdk');
 var multiparty = require('connect-multiparty')
 var multipartMiddleware = multiparty();
 var wxrouter = null;
-
+var blog = require('../api/blog');
 //var wx = null;
 router.bind = function(weixin) {
     wxrouter = weixin;
@@ -268,14 +268,22 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
     source.on('error', function(err) {console.log(err)  })
     console.log('------11-------',req.files,path);
 
-    var resMsg = {
+   /* var resMsg = {
         fromUserName: from,
         toUserName: to,
         msgType: 'image',
         url: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img',
         mediaId: 0
-    };
+    };*/
     //
+    reqBlogs = blog.getAllBlog();
+    resMsg = {
+        fromUserName: from,
+        toUserName: to,
+        msgType: 'news',
+        reqBlogs: reqBlogs,
+        funcFlag: 0
+    };
     console.log('send_wx_start---->>')
     wxrouter.bindSend(resMsg);
     res.end('success ');
