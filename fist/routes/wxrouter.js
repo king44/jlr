@@ -40,7 +40,9 @@ weixin.textMsg(function(msg) {
   console.log('-----keywords.exactKey[msgContent]---',keywords.exactKey[msgContent],msgContent)
   if (!!keywords.exactKey[msgContent]) {
     resMsg.content = keywords.exactKey[msgContent].content;
-    w_socket.send_client(keywords.exactKey[msgContent].content)
+    w_socket.send_client(keywords.exactKey[msgContent].content+'|'+msg.toUserName+'|'+msg.fromUserName);
+    //http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img
+
     flag = true;
   } else {
       reqBlogs = blog.getAllBlog();
@@ -113,7 +115,6 @@ weixin.eventMsg(function(msg) {
           resMsg.content = JSON.stringify(data.msg);
           console.log('----',resMsg.content,msg.toUserName,msg.fromUserName);
           mysql_c.insertSql('user',msg.toUserName,msg.fromUserName,dateStr,dateStr,data.msg.nickname,data.msg.city,data.msg.groupid);
-            w_socket.send_client(dateStr+data.msg.nickname,msg.content)
         }
            var reqBlogs = [];
           reqBlogs = blog.getAllBlog();

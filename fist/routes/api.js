@@ -248,19 +248,16 @@ router.get('/get_img',function(req,res){
 router.post('/upload_img',multipartMiddleware,function(req,res){
 
     var path = req.files.file1.path;
-    console.log('------00-------',req.files,path);
+    var to = req.getHeader('toUserName')
+    var from = req.getHeader('fromUserName')
+    console.log('------00-------',to,from);
 
     var source = fs.createReadStream(path);
     var dest = fs.createWriteStream('upload_img/img.png');
     console.log('------11-------',req.files,path);
     source.pipe(dest);
-    //source.on('end', function() { fs.unlinkSync('./imagess.png');});   //delete
     source.on('error', function(err) {console.log(err)  })
     console.log('------22-------',req.files,path);
-
-
-
-
 
     var postdata='';
     req.addListener("data",function(postchunk){
@@ -268,25 +265,30 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
     });
     //获取到了POST数据
     req.addListener("end",function(){
-       // console.log('req,res,next--------------',req,res,next)
-        //接收前台POST过来的base64
-        console.log(req.body,req.files);
-        for(var key in req.body){
-            console.log('------00-------',key,req[key]);
-        }
+
+
         var imgData = req.body.imgData;
-        //过滤data:URL
+
         var base64Data = postdata.replace(/^data:image\/\w+;base64,/, "");
-        console.log('--------1----->>');
+
          var dataBuffer = new Buffer(postdata, 'base64');
-        console.log('--------2----->>',dataBuffer.length);
+
         fs.writeFile("image.png", dataBuffer, function(err) {
 
             if(err){
                 res.send(err);
             }else{
-                console.log('--------3----->>','保存成功');
                 res.send("保存成功！");
+
+
+                var resMsg = {
+                    fromUserName: to,
+                    toUserName: from,
+                    msgType: 'text',
+                    content: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img',
+                    funcFlag: 0
+                };
+                weixin.sendPicMsg(resMsg);
             }
         });
         res.end('success ');
