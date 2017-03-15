@@ -247,7 +247,7 @@ router.get('/get_img',function(req,res){
 
 router.post('/upload_img',multipartMiddleware,function(req,res){
     var path = req.files.file.path;
-    var t_f = path.split('_');
+    var t_f = req.files.originalFilename.split('_');
     var to = t_f[0];
     var from = t_f[1];
     console.log('------00-------',path,t_f,to,from);
@@ -259,6 +259,15 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
     source.on('error', function(err) {console.log(err)  })
     console.log('------22-------',req.files,path);
 
+    var resMsg = {
+        fromUserName: to,
+        toUserName: from,
+        msgType: 'text',
+        content: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img',
+        funcFlag: 0
+    };
+    weixin.sendPicMsg(resMsg);
+/*
     var postdata='';
     req.addListener("data",function(postchunk){
         postdata+=postchunk;
@@ -281,18 +290,11 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
                 res.send("保存成功！");
 
 
-                var resMsg = {
-                    fromUserName: to,
-                    toUserName: from,
-                    msgType: 'text',
-                    content: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img',
-                    funcFlag: 0
-                };
-                weixin.sendPicMsg(resMsg);
+
             }
         });
         res.end('success ');
-    });
+    })*/;
 });
 //获取用户信息
 var getUserInfoByOpenid = function(access_token,openid){
