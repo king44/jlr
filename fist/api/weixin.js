@@ -146,7 +146,7 @@ WeiXin.prototype.sendTextMsg = function(msg) {
     "</xml>";
   this.res.type('xml');
   this.res.send(output);
-
+  console.log('send_wx_end---->>')
   return this;
 }
 
