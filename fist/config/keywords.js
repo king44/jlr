@@ -27,7 +27,10 @@ var exactKey = {
         key: 'cmd_3',
         content: 'command_3'
 
-    },
+    },'CMD_4':{
+        key: 'cmd_4',
+        content: 'command_4'
+    }
 
 };
 

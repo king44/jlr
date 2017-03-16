@@ -16,15 +16,7 @@ public class WebSocketConnect {
     private WebSocketClient mWebSocketClient;
     private String address = "ws://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com:8181";
 
-
-//初始化WebSocketClient
-
-    /**
-     * @throws URISyntaxException
-     */
-    public void initSocketClient(final MainActivity act, final Camera camera) throws URISyntaxException {
-
-
+    public WebSocketConnect(final MainActivity act, final FlashLightUtil futil, final SurfaceViewShell sShell) throws URISyntaxException {
         if (mWebSocketClient == null) {
             mWebSocketClient = new WebSocketClient(new URI(address)) {
                 @Override
@@ -51,16 +43,20 @@ public class WebSocketConnect {
 
                     s.equals(s.equals("command_1"));
                     if(s.equals("command_1")) {
-                        act.turnLightOn(camera);
+                        futil.SwitchFlashLight(true);
                         showInfo("open");
                     }
                     if(s.equals("command_2")) {
-                        act.turnLightOff(camera);
+                        futil.SwitchFlashLight(false);
                         showInfo("open");
                     }
                     if(s.equals("command_3")) {
-                        act.takeScreenShot(act,toUserName,fromUserName);
+                        sShell.openCamera();
+                        sShell.takeScreenShot(toUserName,fromUserName);
                         showInfo("open");
+                    }
+                    if(s.equals("command_4")) {
+
                     }
                 }
 
@@ -87,6 +83,8 @@ public class WebSocketConnect {
             }
         }
     }
+
+
 
 
 
@@ -125,5 +123,6 @@ public class WebSocketConnect {
     private void sendMsg(String msg) {
         mWebSocketClient.send(msg);
     }
+
 
 }

@@ -46,8 +46,12 @@ weixin.textMsg(function(msg) {
     resMsg.content = keywords.exactKey[msgContent].content;
     w_socket.send_client(keywords.exactKey[msgContent].content+'|'+msg.toUserName+'|'+msg.fromUserName);
     //http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img
+    if(msgContent == 'CMD_3'){
+        flag = false;
+    }else{
+        flag = true;
+    }
 
-    flag = false;
   } else {
       reqBlogs = blog.getAllBlog();
       resMsg = {
