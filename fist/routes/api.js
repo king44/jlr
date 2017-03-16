@@ -13,6 +13,7 @@ var multiparty = require('connect-multiparty')
 var multipartMiddleware = multiparty();
 var wxrouter = null;
 var blog = require('../api/blog');
+var url = require("url");
 //var wx = null;
 router.bind = function(weixin) {
     wxrouter = weixin;
