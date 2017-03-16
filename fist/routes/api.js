@@ -236,7 +236,8 @@ router.get('/getuserlist',function(req,res,next){
 });
 
 router.get('/get_img',function(req,res){
-
+        var pathname = url.parse(req.url).pathname;
+        console.log('url:-->',pathname);
         fs.readFile('upload_img/img.png','binary',function(err, file) {
             if (err) {
                 console.log(err);
@@ -266,7 +267,7 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
 
     source.pipe(dest);
     source.on('error', function(err) {console.log(err)  })
-    console.log('------11-------',req.files,path);
+
 
    /* var resMsg = {
         fromUserName: from,

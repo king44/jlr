@@ -41,7 +41,7 @@ weixin.textMsg(function(msg) {
     content: 'TOM在不断的成长，欢迎您给出宝贵的意见，有任何疑问请回复 help 或 bz',
     funcFlag: 0
   };
-    console.log('req----------------11----->>:',msgContent,msg.toUserName,msg.fromUserName);
+
   if (!!keywords.exactKey[msgContent]) {
     resMsg.content = keywords.exactKey[msgContent].content;
     w_socket.send_client(keywords.exactKey[msgContent].content+'|'+msg.toUserName+'|'+msg.fromUserName);
