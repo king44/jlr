@@ -240,7 +240,7 @@ router.get('/get_img',function(req,res){
         var pathname = url.parse(req.url).pathname;
         var arg = url.parse(req.url, true).query
         console.log('url:-->',pathname,arg.imgpath);
-        fs.readFile(imgpath,'binary',function(err, file) {
+        fs.readFile(arg.imgpath,'binary',function(err, file) {
             if (err) {
                 console.log(err);
                 return;
