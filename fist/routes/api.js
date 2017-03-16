@@ -238,8 +238,9 @@ router.get('/getuserlist',function(req,res,next){
 
 router.get('/get_img',function(req,res){
         var pathname = url.parse(req.url).pathname;
-        console.log('url:-->',pathname);
-        fs.readFile('upload_img/img.png','binary',function(err, file) {
+        var arg = url.parse(req.url, true).query
+        console.log('url:-->',pathname,arg.imgpath);
+        fs.readFile(imgpath,'binary',function(err, file) {
             if (err) {
                 console.log(err);
                 return;
@@ -262,9 +263,10 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
     var to = t_f[1];
 
     console.log('------00-------',to,from);
-
     var source = fs.createReadStream(path);
-    var dest = fs.createWriteStream('upload_img/img.png');
+    var time = Math.round(new Date().getTime() / 1000);
+    var path = 'upload_img/'+time+'_img.png';
+    var dest = fs.createWriteStream(path);
 
     source.pipe(dest);
     source.on('error', function(err) {console.log(err)  })
@@ -278,7 +280,17 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
         mediaId: 0
     };*/
     //
-    reqBlogs = blog.getAllBlog();
+    reqBlogs =  [{
+        title: 'king',
+        description:'aaaaaa',
+        picUrl: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img'+'?imgpath='+path,
+        url: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img',
+        date: time,
+        index: 0
+    }];//blog.getAllBlog();
+
+
+
     resMsg = {
         fromUserName: from,
         toUserName: to,
