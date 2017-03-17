@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
@@ -21,6 +22,7 @@ public class MainActivity extends Activity {
     private FlashLightUtil flashLightUtil;
     private SurfaceViewShell sShell;
     private TextView mCameraBtn;
+    private Vibrator vibrator;
     private static Context context = null;
 
     @Override
@@ -50,7 +52,7 @@ public class MainActivity extends Activity {
         ////////////////////////
         //mCamera = Camera.open();
         //surfaceview = (SurfaceView)findViewById(R.id.surfaceview);
-        final SurfaceViewShell surfaceViewShell = new SurfaceViewShell((SurfaceView) findViewById(R.id.surfaceview));
+        sShell = new SurfaceViewShell((SurfaceView) findViewById(R.id.surfaceview));
         flashLightUtil = new FlashLightUtil(this);
 
         final int[] open_tag = {0};
@@ -59,16 +61,16 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
 
-                if(open_tag[0]%3==0){
+               /* if(open_tag[0]%3==0){
                    // flashLightUtil.turnLightOn();
                     flashLightUtil.SwitchFlashLight(true);
                 }else if(open_tag[0]%3==1){
                    // flashLightUtil.turnLightOff();
                     flashLightUtil.SwitchFlashLight(false);
                 }else{
-                    surfaceViewShell.openCamera();
-                }
-
+                    sShell.openCamera();
+                }*/
+                openVibrator();
                 open_tag[0]++;
                /*if(open_tag[0]%3==0){
 
@@ -83,7 +85,6 @@ public class MainActivity extends Activity {
         });
         //	Settings.System.putInt(getContentResolver(),android.provider.Settings.System.SCREEN_OFF_TIMEOUT,-1);
 
-
         try {
             WebSocketConnect client = new WebSocketConnect(this, flashLightUtil, sShell);
         } catch (URISyntaxException e) {
@@ -91,4 +92,11 @@ public class MainActivity extends Activity {
         }
     }
 
+
+
+    public void openVibrator(){
+        vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+        long [] pattern = {100,1500,100,1500,100}; // 停止 开启 停止 开启
+        vibrator.vibrate(pattern,-1);
+    }
 }

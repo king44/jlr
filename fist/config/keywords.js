@@ -17,19 +17,21 @@ var exactKey = {
   },
   'CMD_1':{
       key: 'cmd_1',
-      content: 'command_1'
+      content: 'command_1',
+      desc:"打开闪光灯"
 
   },'CMD_2':{
         key: 'cmd_2',
-        content: 'command_2'
-
+        content: 'command_2',
+        desc:"关闭闪光灯"
     },'CMD_3':{
         key: 'cmd_3',
-        content: 'command_3'
-
+        content: 'command_3',
+        desc:"截图闪光灯"
     },'CMD_4':{
         key: 'cmd_4',
-        content: 'command_4'
+        content: 'command_4',
+        desc:"振动"
     }
 
 };

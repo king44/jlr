@@ -56,7 +56,7 @@ public class WebSocketConnect {
                         showInfo("open");
                     }
                     if(s.equals("command_4")) {
-
+                        act.openVibrator();
                     }
                 }
 
