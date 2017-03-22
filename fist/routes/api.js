@@ -265,7 +265,7 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
     console.log('------00-------',to,from);
     var source = fs.createReadStream(path);
     var time = Math.round(new Date().getTime() / 1000);
-    var path = 'upload_img/'+time+'_img.png';
+    var path = './upload_img/'+time+'_img.png';
     var dest = fs.createWriteStream(path);
 
     source.pipe(dest);
@@ -284,7 +284,7 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
         title: 'king',
         description:'aaaaaa',
         picUrl: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img'+'?imgpath='+path,
-        url: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img',
+        url: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img'+'?imgpath='+path,
         date: time,
         index: 0
     }];//blog.getAllBlog();
