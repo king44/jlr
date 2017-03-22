@@ -257,6 +257,8 @@ router.get('/get_img',function(req,res){
 )
 
 router.post('/upload_img',multipartMiddleware,function(req,res){
+    console.log('------zz-------',req.files.file);
+    console.log('------zz-------',__dirname);
     var path = req.files.file.path;
     var t_f = req.files.file.originalFilename.split('&');
     var from = t_f[0];
@@ -265,7 +267,7 @@ router.post('/upload_img',multipartMiddleware,function(req,res){
     console.log('------00-------',to,from);
     var source = fs.createReadStream(path);
     var time = Math.round(new Date().getTime() / 1000);
-    var path = './upload_img/'+time+'_img.png';
+    var path = '/home/ubuntu/home/git/jlr/fist/upload_img/'+time+'_img.png';
     var dest = fs.createWriteStream(path);
 
     source.pipe(dest);
