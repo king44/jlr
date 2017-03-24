@@ -6,13 +6,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
-
-import java.net.URISyntaxException;
 
 @SuppressLint({"NewApi", "HandlerLeak"})
 @SuppressWarnings("deprecation")
@@ -22,7 +22,9 @@ public class MainActivity extends Activity {
     private FlashLightUtil flashLightUtil;
     private SurfaceViewShell sShell;
     private TextView mCameraBtn;
+    private TextView mStateInfoTxt;
     private Vibrator vibrator;
+    private Handler handler=null;
     private static Context context = null;
 
     @Override
@@ -30,7 +32,29 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mCameraBtn = (TextView) findViewById(R.id.textView2);
-        context = this;
+        mStateInfoTxt =(TextView) findViewById(R.id.textView);
+        handler= new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                Bundle b = msg.getData();
+                String info = b.getString("info");
+                if(info !=null){
+                    mStateInfoTxt.setText(info);
+                }
+
+                String cmd = b.getString("cmd");
+
+                if(cmd == "command_3"){
+                    String toUserName = b.getString("toUserName");
+                    String fromUserName = b.getString("fromUserName");
+                    sShell.openCamera();
+                    sShell.takeScreenShot(toUserName,fromUserName);
+                }
+
+
+            }
+        };
+            context = this;
         ///////////////////////
         final int REQUEST_CODE_ASK_PERMISSIONS = 123;//权限请求码
 
@@ -85,11 +109,9 @@ public class MainActivity extends Activity {
         });
         //	Settings.System.putInt(getContentResolver(),android.provider.Settings.System.SCREEN_OFF_TIMEOUT,-1);
 
-        try {
-            WebSocketConnect client = new WebSocketConnect(this, flashLightUtil, sShell);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+            WebSocketConnectProxy.createSocketClient(this, flashLightUtil, sShell, handler);
+            //WebSocketConnectProxy client = new WebSocketConnectProxy
+
     }
 
 
@@ -99,4 +121,7 @@ public class MainActivity extends Activity {
         long [] pattern = {100,1500,100,1500,100}; // 停止 开启 停止 开启
         vibrator.vibrate(pattern,-1);
     }
+
+
+
 }

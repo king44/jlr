@@ -1,28 +1,68 @@
 package flashlighttest.example.com.myapplication3;
 
-import android.hardware.Camera;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by 04259 on 2017-03-08.
  */
-public class WebSocketConnect {
+public class WebSocketConnectProxy {
     //WebSocketClient 和 address
     private WebSocketClient mWebSocketClient;
     private String address = "ws://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com:8181";
+    private Handler mHandler;
+    private MainActivity mAct;
 
-    public WebSocketConnect(final MainActivity act, final FlashLightUtil futil, final SurfaceViewShell sShell) throws URISyntaxException {
+    static WebSocketConnectProxy client = null;
+    static void createSocketClient(final MainActivity act, final FlashLightUtil futil, final SurfaceViewShell sShell, final Handler handler) {
+
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                // task to run goes here
+                System.out.println("Hello !!!");
+                try {
+                    if(client ==null||client.mWebSocketClient == null){
+                        WebSocketConnectProxy client = new WebSocketConnectProxy(act,futil,sShell,handler);
+                    }
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        };
+        Timer timer = new Timer();
+        long delay = 0;
+        long intevalPeriod = 10 * 1000;
+        // schedules the task to be run in an interval
+        timer.scheduleAtFixedRate(task, delay,
+                intevalPeriod);
+
+
+    }
+
+
+
+
+    public WebSocketConnectProxy(final MainActivity act, final FlashLightUtil futil, final SurfaceViewShell sShell, Handler handler) throws URISyntaxException {
+        mAct= act;
+        mHandler = handler;
         if (mWebSocketClient == null) {
             mWebSocketClient = new WebSocketClient(new URI(address)) {
                 @Override
                 public void onOpen(ServerHandshake serverHandshake) {
 //连接成功
                     showInfo("opened connection");
+                    updateState("已连接");
                 }
 
 
@@ -33,6 +73,8 @@ public class WebSocketConnect {
                     String s = stringArr[0];
                     String toUserName ="";
                     String fromUserName="";
+
+
                     if(stringArr[1] != null){
                         toUserName = stringArr[1];
                     }
@@ -51,8 +93,20 @@ public class WebSocketConnect {
                         showInfo("open");
                     }
                     if(s.equals("command_3")) {
-                        sShell.openCamera();
-                        sShell.takeScreenShot(toUserName,fromUserName);
+
+                        Message msg = new Message();
+                        Bundle b = new Bundle();
+                        b.putString("cmd","command_3");
+                        b.putString("toUserName",toUserName);
+                        b.putString("fromUserName",fromUserName);
+                        msg.setData(b);
+
+                        //msg.what = COMPLETED;
+                        //handler.sendMessage(msg);
+                        //
+                        mHandler.sendMessage(msg);
+
+
                         showInfo("open");
                     }
                     if(s.equals("command_4")) {
@@ -67,24 +121,56 @@ public class WebSocketConnect {
                     showInfo("Connection closed by " + (remote ? "remote peer" : "us") + ", info=" + s);
                     //
                     closeConnect();
+
+                    updateState("连接已中断");
                 }
 
 
                 @Override
                 public void onError(Exception e) {
                     showInfo("error:" + e);
+
+                    updateState("连接错误:"+e);
+
                 }
             };
+
 
             try {
                 mWebSocketClient.connectBlocking();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+
         }
     }
 
+    private void updateState(String info ){
+        Message msg = new Message();
+        Bundle b = new Bundle();
+        b.putString("info", info);
 
+        msg.setData(b);
+
+        //msg.what = COMPLETED;
+        //handler.sendMessage(msg);
+        mHandler.sendMessage(msg);
+        // mStateInfoTxt.setText(info);
+    }
+
+    private void updateState(String info, String cmd ){
+        Message msg = new Message();
+        Bundle b = new Bundle();
+        b.putString("info", info);
+        b.putString("cmd",cmd);
+        msg.setData(b);
+
+        //msg.what = COMPLETED;
+        //handler.sendMessage(msg);
+        mHandler.sendMessage(msg);
+       // mStateInfoTxt.setText(info);
+    }
 
 
 
