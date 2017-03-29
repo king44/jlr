@@ -50,6 +50,15 @@ public class MainActivity extends Activity {
                     sShell.openCamera();
                     sShell.takeScreenShot(toUserName,fromUserName);
                 }
+                if(cmd == "command_2"){
+                    flashLightUtil.SwitchFlashLight(false);
+                }
+                if(cmd == "command_1"){
+                   // flashLightUtil.releaseCamera();
+                   // sShell.releaseCamera();
+                    flashLightUtil.SwitchFlashLight(true);
+                }
+
 
 
             }
@@ -85,7 +94,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
 
-               /* if(open_tag[0]%3==0){
+                if(open_tag[0]%3==0){
                    // flashLightUtil.turnLightOn();
                     flashLightUtil.SwitchFlashLight(true);
                 }else if(open_tag[0]%3==1){
@@ -93,8 +102,8 @@ public class MainActivity extends Activity {
                     flashLightUtil.SwitchFlashLight(false);
                 }else{
                     sShell.openCamera();
-                }*/
-                openVibrator();
+                }
+                //openVibrator();
                 open_tag[0]++;
                /*if(open_tag[0]%3==0){
 

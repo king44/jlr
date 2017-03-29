@@ -43,9 +43,10 @@ public class FlashLightUtil {
     }
 
     public void SwitchFlashLight(Boolean isOpenCamera){
-        mCamera = Camera.open();
+
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             // your code using Camera API here - is between 1-20
+
             if (isOpenCamera) {
 
                 turnLightOff();

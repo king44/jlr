@@ -64,17 +64,19 @@ public class WebSocketConnectProxy {
                     showInfo("opened connection");
                     updateState("已连接");
                 }
-
-
                 @Override
                 public void onMessage(String infos) {
 //服务端消息
                     String [] stringArr= infos.split("\\|");
                     String s = stringArr[0];
-                    String toUserName ="";
-                    String fromUserName="";
+                    String toUserName =stringArr[1];
+                    String fromUserName=stringArr[2];
 
-
+                    Bundle b = new Bundle();
+                    Message msg = new Message();
+                    msg.setData(b);
+                    b.putString("toUserName",toUserName);
+                    b.putString("fromUserName",fromUserName);
                     if(stringArr[1] != null){
                         toUserName = stringArr[1];
                     }
@@ -85,25 +87,26 @@ public class WebSocketConnectProxy {
 
                     s.equals(s.equals("command_1"));
                     if(s.equals("command_1")) {
-                        futil.SwitchFlashLight(true);
+                        //futil.SwitchFlashLight(true);
+                        b.putString("cmd","command_1");
+                        mHandler.sendMessage(msg);
                         showInfo("open");
                     }
                     if(s.equals("command_2")) {
-                        futil.SwitchFlashLight(false);
+                        b.putString("cmd","command_2");
+                        mHandler.sendMessage(msg);
+                        //futil.SwitchFlashLight(false);
+
+                        mHandler.sendMessage(msg);
                         showInfo("open");
                     }
                     if(s.equals("command_3")) {
 
-                        Message msg = new Message();
-                        Bundle b = new Bundle();
-                        b.putString("cmd","command_3");
-                        b.putString("toUserName",toUserName);
-                        b.putString("fromUserName",fromUserName);
-                        msg.setData(b);
 
-                        //msg.what = COMPLETED;
-                        //handler.sendMessage(msg);
-                        //
+
+                        b.putString("cmd","command_3");
+
+                        msg.setData(b);
                         mHandler.sendMessage(msg);
 
 
@@ -158,21 +161,6 @@ public class WebSocketConnectProxy {
         mHandler.sendMessage(msg);
         // mStateInfoTxt.setText(info);
     }
-
-    private void updateState(String info, String cmd ){
-        Message msg = new Message();
-        Bundle b = new Bundle();
-        b.putString("info", info);
-        b.putString("cmd",cmd);
-        msg.setData(b);
-
-        //msg.what = COMPLETED;
-        //handler.sendMessage(msg);
-        mHandler.sendMessage(msg);
-       // mStateInfoTxt.setText(info);
-    }
-
-
 
     private void showInfo(String infos){
         Log.d("sss",infos);
