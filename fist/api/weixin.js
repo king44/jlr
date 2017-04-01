@@ -197,6 +197,27 @@ WeiXin.prototype.sendPicMsg = function(msg) {
   }
   //TODO:
 WeiXin.prototype.sendLocationMsg = function(msg) {
+
+    var time = Math.round(new Date().getTime() / 1000);
+    var output = "" +
+        "<xml>" +
+        "<ToUserName><![CDATA[" + msg.toUserName + "]]></ToUserName>" +
+        "<FromUserName><![CDATA[" + msg.fromUserName + "]]></FromUserName>" +
+        "<CreateTime>" + time + "</CreateTime>" +
+        "<MsgType><![CDATA[" + msg.msgType + "]]></MsgType>" +
+        "<Location_X ><![CDATA[" + msg.locationX + "]]></Location_X >" +
+        "<Location_Y ><![CDATA[" + msg.locationY + "]]></Location_Y >" +
+        "<Scale><![CDATA[" + msg.scale + "]]></Scale>" +
+        "<Label><![CDATA[" + msg.label + "]]></Label>" +
+
+        "</xml>";
+    this.res.type('xml');
+    this.res.send(output);
+
+
+
+
+
   return this;
 }
 
@@ -230,9 +251,9 @@ WeiXin.prototype.sendMsg = function(msg) {
     case 'image':
       this.sendPicMsg(msg);
       break;
-      /*case 'location':
+      case 'location':
         this.sendLocationMsg(msg);
-        break;*/
+        break;
   }
 }
 

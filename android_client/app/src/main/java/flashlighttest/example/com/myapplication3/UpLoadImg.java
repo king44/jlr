@@ -1,8 +1,14 @@
 package flashlighttest.example.com.myapplication3;
 
 import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
@@ -10,14 +16,89 @@ import android.util.Log;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 /**
  * Created by 04259 on 2017-03-14.
  */
 public class UpLoadImg {
-
-    private String actionUrl ="http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com:80/api/upload_img";
+    private String CMD_5 = "upload_Location";
+    private String CMD_3="upload_img";
+    private String actionUrl ="http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com:80/api/";
     private String newName = "abcdef";
+
+    public void startUpLocation(final LocationManager lm, final String toUserName, final String fromUserName){
+
+        List<String> providers = lm.getProviders(true);
+        Location l = null;
+        double longitude = 0;
+        double latitude =0;
+        for (int i=providers.size()-1; i>=0; i--) {
+            l = lm.getLastKnownLocation(providers.get(i));
+            if (l != null){
+                System.out.print("aa");
+                longitude = l.getLongitude();
+                latitude = l.getLatitude();
+                break;
+            }
+        }
+
+
+        final double finalLongitude = longitude;
+        final double finalLatitude = latitude;
+        Runnable networkTask = new Runnable() {
+
+            @Override
+            public void run() {
+                // TODO
+
+
+                uploadLocation(finalLongitude, finalLatitude,  toUserName,   fromUserName);
+            }
+        };
+
+        new Thread(networkTask).start();
+
+
+    }
+
+
+
+    public void uploadLocation(double longitude, double latitude, String toUserName, String fromUserName) {
+        String end = "\r\n";
+        String twoHyphens = "--";
+        String boundary = "*****";
+        try {
+            URL url = new URL(actionUrl+CMD_5);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                         /* 允许Input、Output，不使用Cache */
+            con.setDoInput(true);
+            con.setDoOutput(true);
+            con.setUseCaches(false);
+                         /* 设置传送的method=POST */
+            con.setRequestMethod("POST");
+                         /* setRequestProperty */
+            con.setRequestProperty("Connection", "Keep-Alive");
+            con.setRequestProperty("Charset", "UTF-8");
+            con.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+            //     con.setRequestProperty("toUserName",toUserName);
+            //     con.setRequestProperty("fromUserName",fromUserName);
+                         /* 设置DataOutputStream */
+            DataOutputStream ds = new DataOutputStream(con.getOutputStream());
+            ds.writeBytes(twoHyphens + boundary + end);
+            ds.writeBytes("Content-Disposition: form-data; " + "name=\"file\";filename=\"" + toUserName+"&"+fromUserName + "\"" + end);
+            ds.writeBytes(end);
+                         /* 取得文件的FileInputStream */
+
+
+                         /* 将Response显示于Dialog */
+            showDialog("上传成功" );
+                         /* 关闭DataOutputStream */
+            ds.close();
+        } catch (Exception e) {
+            showDialog("上传失败" + e);
+        }
+    }
 
 
     public void startUp(final Bitmap bmp, final String toUserName, final String fromUserName){
@@ -46,7 +127,7 @@ public class UpLoadImg {
         String twoHyphens = "--";
         String boundary = "*****";
         try {
-            URL url = new URL(actionUrl);
+            URL url = new URL(actionUrl+CMD_3);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
                          /* 允许Input、Output，不使用Cache */
             con.setDoInput(true);

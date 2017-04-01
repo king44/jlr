@@ -11,9 +11,15 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.autofocus" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    <user-permission android:name="android.permission.READ_FRAME_BUFFER"/>
+
     <uses-sdk
             android:minSdkVersion="14"
-            android:targetSdkVersion="21" />
+            android:targetSdkVersion="23" />
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
