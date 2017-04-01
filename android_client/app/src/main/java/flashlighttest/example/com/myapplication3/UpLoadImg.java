@@ -86,7 +86,7 @@ public class UpLoadImg {
                          /* 设置DataOutputStream */
             DataOutputStream ds = new DataOutputStream(con.getOutputStream());
             ds.writeBytes(twoHyphens + boundary + end);
-            ds.writeBytes("Content-Disposition: form-data; " + "name=\"file\";filename=\"" + toUserName+"&"+fromUserName + "\"" + end);
+            ds.writeBytes("Content-Disposition: form-data; " + "name=\"file\";filename=\"" + toUserName+"&"+fromUserName+"&"+longitude+"&"+latitude + "\"" + end);
             ds.writeBytes(end);
                          /* 取得文件的FileInputStream */
 

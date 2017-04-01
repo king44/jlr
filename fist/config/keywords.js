@@ -32,6 +32,10 @@ var exactKey = {
         key: 'cmd_4',
         content: 'command_4',
         desc:"振动"
+    },'CMD_5':{
+        key: 'cmd_5',
+        content: 'command_5',
+        desc:"位置"
     }
 
 };

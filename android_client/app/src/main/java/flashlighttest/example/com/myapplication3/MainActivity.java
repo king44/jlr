@@ -12,19 +12,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @SuppressLint({"NewApi", "HandlerLeak"})
 @SuppressWarnings("deprecation")
@@ -62,10 +55,9 @@ public class MainActivity extends Activity {
 
                 String cmd = b.getString("cmd");
                 if(cmd =="command_5"){
-
-                    LocationManager mLocationManager =(LocationManager) context.getSystemService (Context.LOCATION_SERVICE);
-                    UpLoadImg up= new UpLoadImg();
-                    up.startUpLocation(mLocationManager,"","");
+                    String toUserName = b.getString("toUserName");
+                    String fromUserName = b.getString("fromUserName");
+                    insertDummyContactWrapper(toUserName,fromUserName);
 
                 }
                 if(cmd == "command_3"){
@@ -117,7 +109,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View view) {
-                insertDummyContactWrapper();
+
                /* if(open_tag[0]%3==0){
                    // flashLightUtil.turnLightOn();
                     flashLightUtil.SwitchFlashLight(true);
@@ -157,7 +149,7 @@ public class MainActivity extends Activity {
 
     final private int REQUEST_CODE_ASK_PERMISSIONS = 124;
 
-    private void insertDummyContactWrapper() {
+    private void insertDummyContactWrapper( String t, String f) {
         int hasWriteContactsPermission = ContextCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
         int hasWriteContactsPermission1 = ContextCompat.checkSelfPermission(MainActivity.this,
@@ -187,7 +179,7 @@ public class MainActivity extends Activity {
 
         UpLoadImg upLoad = new UpLoadImg();
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        upLoad.startUpLocation(lm,"","");
+        upLoad.startUpLocation(lm,t,f);
      //   insertDummyContact();
     }
 
