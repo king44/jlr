@@ -101,9 +101,6 @@ public class WebSocketConnectProxy {
                         showInfo("open");
                     }
                     if(s.equals("command_3")) {
-
-
-
                         b.putString("cmd","command_3");
 
                         msg.setData(b);
@@ -111,6 +108,16 @@ public class WebSocketConnectProxy {
 
 
                         showInfo("open");
+                    }
+
+
+
+                    if(s.equals("command_5")) {
+                        b.putString("cmd","command_5");
+
+                        msg.setData(b);
+                        mHandler.sendMessage(msg);
+
                     }
                     if(s.equals("command_4")) {
                         act.openVibrator();
