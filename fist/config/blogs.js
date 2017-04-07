@@ -32,8 +32,8 @@
 module.exports = [{
     title: 'king',
     description:'aaaaaa',
-    picUrl: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img',
-    url: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img',
+    picUrl: 'http://ec2-54-255-229-26.ap-southeast-1.compute.amazonaws.com/api/get_img',
+    url: 'http://ec2-54-255-229-26.ap-southeast-1.compute.amazonaws.com/api/get_img',
     date: '2017-06-22',
     index: 0
 }];

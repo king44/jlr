@@ -301,15 +301,15 @@ router.post('/upload_img', multipartMiddleware, function (req, res) {
      fromUserName: from,
      toUserName: to,
      msgType: 'image',
-     url: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img',
+     url: 'http://ec2-54-255-229-26.ap-southeast-1.compute.amazonaws.com/api/get_img',
      mediaId: 0
      };*/
     //
     reqBlogs = [{
         title: 'king',
         description: 'aaaaaa',
-        picUrl: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img' + '?imgpath=' + path,
-        url: 'http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com/api/get_img' + '?imgpath=' + path,
+        picUrl: 'http://ec2-54-255-229-26.ap-southeast-1.compute.amazonaws.com/api/get_img' + '?imgpath=' + path,
+        url: 'http://ec2-54-255-229-26.ap-southeast-1.compute.amazonaws.com/api/get_img' + '?imgpath=' + path,
         date: time,
         index: 0
     }];//blog.getAllBlog();

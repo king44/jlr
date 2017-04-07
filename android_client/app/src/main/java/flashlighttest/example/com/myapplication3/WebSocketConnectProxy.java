@@ -18,7 +18,7 @@ import java.util.TimerTask;
 public class WebSocketConnectProxy {
     //WebSocketClient 和 address
     private WebSocketClient mWebSocketClient;
-    private String address = "ws://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com:8181";
+    private String address = "ws://ec2-54-255-229-26.ap-southeast-1.compute.amazonaws.com:8181";
     private Handler mHandler;
     private MainActivity mAct;
 

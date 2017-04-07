@@ -8,7 +8,7 @@ var TEST_TABLE = 'user';
 
 //创建连接
 var sql_client = mysql.createConnection({
-    host:'ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com',
+    host:'ec2-54-255-229-26.ap-southeast-1.compute.amazonaws.com',
     post:'3306',
     user: 'root',
     password: 'photonman',

@@ -24,7 +24,7 @@ import java.util.List;
 public class UpLoadImg {
     private String CMD_5 = "upload_Location";
     private String CMD_3="upload_img";
-    private String actionUrl ="http://ec2-54-255-166-71.ap-southeast-1.compute.amazonaws.com:80/api/";
+    private String actionUrl ="http://ec2-54-255-229-26.ap-southeast-1.compute.amazonaws.com:80/api/";
     private String newName = "abcdef";
 
     public void startUpLocation(final LocationManager lm, final String toUserName, final String fromUserName){
