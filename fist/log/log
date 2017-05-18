@@ -1,0 +1,58 @@
+Thu, 18 May 2017 07:24:03 GMT body-parser deprecated undefined extended: provide extended option at home/ubuntu/home/git/jlr/fist/app.js:17:20
+Server running at port:3000
+Node app is running, port: 80
+<-- HandshakeInitializationPacket
+HandshakeInitializationPacket {
+  protocolVersion: 10,
+  serverVersion: '5.7.18-0ubuntu0.16.04.1',
+  threadId: 4,
+  scrambleBuff1: <Buffer 0c 37 54 32 7f 75 5e 7a>,
+  filler1: <Buffer 00>,
+  serverCapabilities1: 63487,
+  serverLanguage: 8,
+  serverStatus: 2,
+  serverCapabilities2: 33279,
+  scrambleLength: 21,
+  filler2: <Buffer 00 00 00 00 00 00 00 00 00 00>,
+  scrambleBuff2: <Buffer 56 0d 78 1b 50 31 1a 38 75 77 59 6f>,
+  filler3: <Buffer 00>,
+  pluginData: 'mysql_native_password',
+  protocol41: true }
+
+--> ClientAuthenticationPacket
+ClientAuthenticationPacket {
+  clientFlags: 455631,
+  maxPacketSize: 0,
+  charsetNumber: 33,
+  filler: undefined,
+  user: 'root',
+  scrambleBuff: <Buffer bc 9f fa 5a 19 82 e5 4d 8f 71 a5 67 9c ab e3 34 c2 48 a3 39>,
+  database: undefined,
+  protocol41: true }
+
+<-- OkPacket
+OkPacket {
+  fieldCount: 0,
+  affectedRows: 0,
+  insertId: 0,
+  serverStatus: 2,
+  warningCount: 0,
+  message: '',
+  protocol41: true,
+  changedRows: 0 }
+
+--> ComQueryPacket
+ComQueryPacket { command: 3, sql: 'use nodejs' }
+
+<-- OkPacket
+OkPacket {
+  fieldCount: 0,
+  affectedRows: 0,
+  insertId: 0,
+  serverStatus: 2,
+  warningCount: 0,
+  message: '',
+  protocol41: true,
+  changedRows: 0 }
+
+send_wx_end---->> <xml><ToUserName><![CDATA[oJwGGwqSBb3bJ7uL8vJiJ7TvcMWc]]></ToUserName><FromUserName><![CDATA[gh_a7a91ba2d7d6]]></FromUserName><CreateTime>1495092331</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[打开闪光灯]]></Content><FuncFlag>0</FuncFlag></xml>

@@ -2,7 +2,7 @@
 /////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
-var Token_PORT=3000;                 //监听8080端口号
+//var Token_PORT=3000;                 //监听8080端口号
 var http=require('http');
 var qs=require('qs');
 
@@ -51,9 +51,9 @@ var server=http.createServer(function (request,response) {
   }
 });
 
-server.listen(Token_PORT, function () {
-  console.log('Server running at port:'+Token_PORT);
-});
+//server.listen(Token_PORT, function () {
+//  console.log('Server running at port:'+Token_PORT);
+//});
 ///////////////////////////////////////////////////////////
 
 'use strict';
