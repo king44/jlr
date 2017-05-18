@@ -9,7 +9,7 @@ var info = [
     }
 ]
 http.createServer(function (req, res) {
-    var params = url.parse(req.url, true).query;//解释url参数部分name=zzl&email=zzl@sina.com
+    var params = url.parse(req.url, true).query;
     var client = redis.createClient();
     client.lpush("total", params.info);
     res.writeHead(200, {

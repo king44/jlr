@@ -3,7 +3,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 //var Token_PORT=3000;                 //监听8080端口号
-var http=require('http');
+/*var http=require('http');
 var qs=require('qs');
 
 var TOKEN='jinliren';           //必须与测试号所填写的Token相同
@@ -49,7 +49,7 @@ var server=http.createServer(function (request,response) {
       response.end('success ');
     });
   }
-});
+});*/
 
 //server.listen(Token_PORT, function () {
 //  console.log('Server running at port:'+Token_PORT);
