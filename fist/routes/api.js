@@ -277,9 +277,17 @@ router.post('/upload_Location', multipartMiddleware, function (req, res) {
 
 
 });
+router.post('/dp_pageChange', multipartMiddleware, function (req, res) {
+    console.log('------dp_pageChange-------', req);
+
+    res.end('success ');
+
+})
+
+
+
 router.post('/upload_img', multipartMiddleware, function (req, res) {
-    console.log('------zz-------', req.files.file);
-    console.log('------zz-------', __dirname);
+
     var path = req.files.file.path;
     var t_f = req.files.file.originalFilename.split('&');
     var from = t_f[0];

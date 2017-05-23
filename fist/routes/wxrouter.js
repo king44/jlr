@@ -38,7 +38,7 @@ weixin.textMsg(function(msg) {
     fromUserName: msg.toUserName,
     toUserName: msg.fromUserName,
     msgType: 'text',
-    content: 'TOM在不断的成长，欢迎您给出宝贵的意见，有任何疑问请回复 help 或 bz',
+    content: 'help',
     funcFlag: 0
   };
 
@@ -130,8 +130,6 @@ weixin.eventMsg(function(msg) {
           for(var i= 0 ;i<reqBlogs.length;i++){
               reqBlogs[i].url = reqBlogs[i].url +'?openid='+data.msg.openid+'&nickname='+data.msg.nickname;
           }
-
-
           var  resMsg2 = {
               fromUserName: msg.toUserName,
               toUserName: msg.fromUserName,
