@@ -278,7 +278,7 @@ router.post('/upload_Location', multipartMiddleware, function (req, res) {
 
 });
 router.post('/dp_pageChange', multipartMiddleware, function (req, res) {
-    console.log('------dp_pageChange-------', req);
+    console.log('------dp_pageChange-------', req.body.op);
 
     res.end('success ');
 
