@@ -14,6 +14,7 @@ var multipartMiddleware = multiparty();
 var wxrouter = null;
 var blog = require('../api/blog');
 var url = require("url");
+var w_socket = require('../util/ws_util');
 //var wx = null;
 router.bind = function (weixin) {
     wxrouter = weixin;
@@ -278,8 +279,9 @@ router.post('/upload_Location', multipartMiddleware, function (req, res) {
 
 });
 router.post('/dp_pageChange', multipartMiddleware, function (req, res) {
-    console.log('------dp_pageChange-------', req.body.op);
 
+    w_socket.send_client(req.body.op);
+    console.log('------dp_pageChange-------',w_socket ,req.body.op);
     res.end('success ');
 
 })
