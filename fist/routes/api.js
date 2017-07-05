@@ -281,7 +281,8 @@ router.post('/upload_Location', multipartMiddleware, function (req, res) {
 router.post('/dp_pageChange', multipartMiddleware, function (req, res) {
 
     w_socket.send_client(req.body.op);
-    console.log('------dp_pageChange-------',w_socket ,req.body.op);
+    console.log('------dp_pageChange---1----',req.body);
+    console.log('------dp_pageChange---2----',req.body.op);
     res.end('success ');
 
 })
