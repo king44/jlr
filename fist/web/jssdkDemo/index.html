@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+   <!--<script src = './js/main.js'>
+    </script>-->
+</head>
+
+<body >
+<div class="vertical-center">
+    <p id="test">test:</p>
+</div>
+
+<script>
+
+
+    $.get("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx35d626d48bbffcda&secret=b518ace5173e5d1d32a0a81ac080ef32", function(result){
+        console.log(result);
+        $("#test").text(result)
+    });
+
+
+
+</script>
+</body>
+</html>

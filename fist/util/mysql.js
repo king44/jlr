@@ -15,8 +15,8 @@ var sql_client = mysql.createConnection({
     debug:'true'
 });
 
-sql_client.connect();
-sql_client.query("use " + TEST_DATABASE);
+//sql_client.connect();
+//sql_client.query("use " + TEST_DATABASE);
 
 /*sql_client.query(
  'SELECT * FROM '+TEST_TABLE,

@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var todos = require('./routes/todos');
 var wx = require('./routes/wxrouter');
 var api = require('./routes/api');
+var web = require('./routes/web')
 var cloud = require('./cloud');
 var mysql_c=require('./util/mysql');
 var bodyParser = require('body-parser')
@@ -69,6 +70,8 @@ app.get('/jssdk',function(req,res){
 //weixin
 app.use('/wx', wx);
 app.use('/api',api);
+app.use('/web', web );
+
 api.bind(wx);
 
 // 可以将一类的路由单独保存在一个文件中

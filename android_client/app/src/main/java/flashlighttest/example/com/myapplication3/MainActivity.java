@@ -191,8 +191,6 @@ public class MainActivity extends Activity {
                 .create()
                 .show();
     }
-
-
     /**
      * 提示框
      * @param context
