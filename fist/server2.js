@@ -2,7 +2,7 @@
 /////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
-var Token_PORT=3000;                 //监听8080端口号
+var Token_PORT=80;                 //监听8080端口号
 var http=require('http');
 var qs=require('qs');
 
@@ -55,6 +55,7 @@ server.listen(Token_PORT, function () {
   console.log('Server running at port:'+Token_PORT);
 });
 ///////////////////////////////////////////////////////////
+/*
 
 'use strict';
 var AV = require('leanengine');
@@ -75,6 +76,7 @@ var PORT = parseInt(process.env.LC_APP_PORT || 80);
 app.listen(PORT, function () {
   console.log('Node app is running, port:', PORT);
 });
+*/
 
 
 ///////////////////////////////////////////////////////////////////
