@@ -8,8 +8,8 @@ module.exports = {
     //  b518ace5173e5d1d32a0a81ac080ef32
     aotu: {
       token: 'jinliren',
-      appid: 'wx35d626d48bbffcda',
-      secret: 'b518ace5173e5d1d32a0a81ac080ef32',
+      appid: 'wx3149a4658f5aa676',
+      secret: 'd64ea9dc045b1941a6ef5a45ad7d2d4c',
       cached: {},
       menu: {
         "button": []
